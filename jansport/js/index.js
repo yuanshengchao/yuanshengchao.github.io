@@ -44,15 +44,17 @@ $(function() {
       // 查看结果
       $("#showResult").click(function(){
         $("body").scrollTop(0);
-        $("body").css("overflow","hidden");
-         var screenheight = $(window).height();
+        $("body,html").css("overflow","hidden");
+        $('body').bind("touchmove",function(e){ e.preventDefault(); });
+        var screenheight = $(window).height();
         var bodyheight = $("body").height();
          var lastheight = screenheight > bodyheight ? screenheight : bodyheight;
         $(".sub").height(lastheight);
       	$(".sub").show();
       	var time=setTimeout(function(){
       		$(".sub").fadeOut();
-          $("body").css("overflow","auto");
+          $("body,html").css("overflow","auto");
+          $("body").unbind("touchmove");
       		$("#questionBox").hide();
 	      	switch(boxAnswer[ind][isChoose-1]){
 	        	case "A":$result.eq(0).slideDown();$(".shareNew").show();break;
@@ -64,9 +66,4 @@ $(function() {
       	},2500);
       	clearTimeOut(time);
       });
-    // function test(isChoose,tog) {
-    //     tog.hide();
-    //     tog.siblings().eq(isChoose).show();
-    //     break;
-    // }
 });
