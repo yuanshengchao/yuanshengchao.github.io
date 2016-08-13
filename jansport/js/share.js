@@ -73,11 +73,13 @@ $(document).ready(function() {
         var lastheight = screenheight > bodyheight ? screenheight : bodyheight;
         $("div.shadowbox").height(lastheight);
          $("body").scrollTop(0);
-        $("body").css("overflow","hidden");
+        $("body,html").css("overflow","hidden");
+         $('body').bind("touchmove",function(e){ e.preventDefault(); });
         $("div.shadowbox").show();
     });
     $("div.shadowbox").click(function() {
         $(this).hide();
-        $("body").css("overflow","auto");
+        $("body,html").css("overflow","auto");
+         $("body").unbind("touchmove");
     });
 });
