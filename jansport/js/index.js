@@ -45,6 +45,10 @@ $(function() {
       $("#showResult").click(function(){
         $("body").scrollTop(0);
         $("body").css("overflow","hidden");
+         var screenheight = $(window).height();
+        var bodyheight = $("body").height();
+         var lastheight = screenheight > bodyheight ? screenheight : bodyheight;
+        $(".sub").height(lastheight);
       	$(".sub").show();
       	var time=setTimeout(function(){
       		$(".sub").fadeOut();
