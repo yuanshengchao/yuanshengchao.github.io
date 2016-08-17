@@ -218,6 +218,7 @@ a.btn {
 }
 #result>article>div>div{
     margin:10px;
+    clear: both;
 }
 #result>article>div>div>p{
     font-size:16px;
