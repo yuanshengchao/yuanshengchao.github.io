@@ -64,6 +64,5 @@ $(function() {
 	        	case "E":$result.eq(4).slideDown();$(".shareNew").show();break;
 	        }
       	},2500);
-      	clearTimeOut(time);
       });
 });

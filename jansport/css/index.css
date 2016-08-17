@@ -211,7 +211,9 @@ a.btn {
 #result>footer {
     display: none;
 }
-
+#result>article>div>p:nth-child(2){
+    text-align: center;
+}
 #result>article>div>p>img {
     max-width: 100%;
     margin: 10px auto;
@@ -219,6 +221,8 @@ a.btn {
 #result>article>div>div{
     margin:10px;
     clear: both;
+    height: auto;
+    overflow: hidden;
 }
 #result>article>div>div>p{
     font-size:16px;
