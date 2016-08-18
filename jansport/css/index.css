@@ -187,21 +187,22 @@ a.btn {
     background-color: #fff;
 }
 
-#joinUs div {
+#joinUs div,div.joinUs {
     width: 100%;
     text-align: center;
 }
 
-#joinUs div h3 {
+#joinUs div h3,div.joinUs h3 {
     font-size: 12px;
     line-height: 20px;
     font-weight: normal;
     letter-spacing: 1px;
     color: #f00;
+    margin-top: -10px;
     margin-bottom: 20px;
 }
 
-#joinUs img {
+#joinUs img,div.joinUs img {
     max-width: 100%;
 }
 
@@ -249,7 +250,18 @@ a.btn {
 #result>article span {
     font-weight: normal;
 }
-
+#result>article p>span{
+    display: block;
+    margin-top: 10px;
+    font-size: 14px;
+    text-indent: 32px;
+    line-height: 32px;
+}
+#result>article p:first-child>span{
+    display: inline-block;
+    font-size: 16px;
+    text-indent: 0px;
+}
 .people {
     text-align: left;
     margin: 20px 20px 0px 20px;
@@ -257,4 +269,14 @@ a.btn {
     line-height: 20px;
     text-indent: 1;
     font-weight: bold;
+}
+.people>span,.people>strong{
+    display: block;
+    line-height: 32px;
+    color: #0070C0;
+    text-align: center;
+    font-size: 12px;
+}
+.people>strong{
+    font-size: 18px;
 }
