@@ -30,6 +30,6 @@ fis.match('*.png', {
 
 // 设置打包的目录或者服务器，对应的地址即可
 fis.match('*.{png,jpg,gif,js,css}',{
-	release:'/md5/$0', //对应目录
+	release:'/jansport/$0', //对应目录
 	useHash: true  //md5加密
 });
