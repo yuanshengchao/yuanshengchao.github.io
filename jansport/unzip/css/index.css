@@ -14,10 +14,10 @@
     text-align: center;
     background-color: rgba(18, 124, 199, 0.9);
     background:url(../images/loading.gif) no-repeat center center scroll;
-    background-size: cover;
-    -webkit-background-size:cover;
-    -moz-background-size:cover;
-    -ms-background-size:cover;
+    background-size: 100%;
+    -webkit-background-size:100%;
+    -moz-background-size:100%;
+    -ms-background-size:100%;
     opacity: 0.9;
 }
 

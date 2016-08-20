@@ -31,5 +31,8 @@ fis.match('*.png', {
 // 设置打包的目录或者服务器，对应的地址即可
 fis.match('*.{png,jpg,gif,js,css}',{
 	release:'$0', //对应目录
-	useHash: true  //md5加密
+	useHash: true,  //md5加密
+	url:"http://yuanshengchao.cn/jansport$0"
 });
+
+// 配置引用路径
