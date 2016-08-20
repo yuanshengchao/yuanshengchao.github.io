@@ -12,15 +12,15 @@
     z-index: 99 !important;
     color: #fff;
     text-align: center;
-    background-color: rgba(0, 0, 0, 0.9);
+    background-color: rgba(18, 124, 199, 0.9);
+    background:url(../images/loading.gif) no-repeat center center scroll;
+    background-size: cover;
+    -webkit-background-size:cover;
+    -moz-background-size:cover;
+    -ms-background-size:cover;
+    opacity: 0.9;
 }
 
-.sub>img {
-    display: block;
-    margin: 0 auto;
-    margin-top: 40%;
-    margin-bottom: 20px;
-}
 
 
 /*首页版*/
@@ -105,7 +105,7 @@
 #questionBox>article>div {
     border-radius: 15px;
     margin: 10px 0;
-    margin-bottom: 50px;
+    margin-bottom: 20px;
     border: 1px solid #ccc;
 }
 

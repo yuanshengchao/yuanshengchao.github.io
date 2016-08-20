@@ -67,4 +67,13 @@ $(function() {
 	        }
       	},2500);
       });
+
+      // 点显示红包规则
+      $("#swipe").click(function(){
+          $("#hb").show();
+      });
+      // 关闭规则
+      $("#closeHb").click(function(){
+         $("#hb").hide();
+       });
 });
