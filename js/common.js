@@ -5,4 +5,4 @@ var _hmt = _hmt || [];
   var s = document.getElementsByTagName("script")[0]; 
   s.parentNode.insertBefore(hm, s);
 })();
-cnsole.log(_hmt);
+console.log(_hmt);
