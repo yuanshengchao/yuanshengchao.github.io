@@ -11,6 +11,7 @@
    <link href="//cdn.bootcss.com/bootstrap-validator/0.5.3/css/bootstrapValidator.min.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="css/common.css">
     <link rel="stylesheet" type="text/css" href="css/index.css">
+     <script src="js/common.js"></script>
 </head>
 <style type="text/css" media="screen">
 @media(min-width:768px) {
@@ -35,12 +36,12 @@ div#myBook table tr th {
         <div class="container">
             <!-- 主要的首页内容，比下面的大一点 -->
             <div class="navbar-header">
-                <a href="#" class="navbar-brand" id="active">首页</a>
+                <a href="index.html" class="navbar-brand" id="active">首页</a>
             </div>
             <div class="navbar-collapse collapse" id="navbar">
                 <ul id="nav" class="nav navbar-nav">
                     <li v-for="meau in meaus">
-                        <a href="#">{{meau.name}}</a>
+                        <a href="{{meau.url}}">{{meau.name}}</a>
                     </li>
                 </ul>
             </div>
@@ -97,10 +98,10 @@ div#myBook table tr th {
             <button type="button" name="submit" class="btn btn-primary btn-block" v-on:click="addBook()">添加</button>
         </form>
     </div>
-    <script src="//cdn.bootcss.com/jquery/3.1.0/jquery.min.js"></script>
+    <script src="http://cdn.bootcss.com/jquery/3.1.0/jquery.min.js"></script>
     <script src="http://apps.bdimg.com/libs/bootstrap/3.3.0/js/bootstrap.min.js"></script>
-   <script src="//cdn.bootcss.com/bootstrap-validator/0.5.3/js/bootstrapValidator.min.js"></script>
-    <script src="//cdn.bootcss.com/bootstrap-validator/0.5.3/js/language/zh_CN.min.js"></script>
+   <script src="http://cdn.bootcss.com/bootstrap-validator/0.5.3/js/bootstrapValidator.min.js"></script>
+    <script src="http://cdn.bootcss.com/bootstrap-validator/0.5.3/js/language/zh_CN.min.js"></script>
     <script src="js/vue.js"></script>
     <script src="js/index.js"></script>
 </body>

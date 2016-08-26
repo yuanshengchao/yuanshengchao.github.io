@@ -59,15 +59,19 @@ new Vue({
     data: {
         meaus: [{
             id: "1",
+            url:"search/search.html",
             name: "技术交流"
         }, {
             id: "2",
+            url:"#",
             name: "享受生活"
         }, {
             id: "2",
+            url:"#",
             name: "作品精选"
         }, {
             id: "2",
+            url:"#",
             name: "享受生活"
         }]
     }
