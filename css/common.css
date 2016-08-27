@@ -9,5 +9,31 @@ body {
     margin: 0;
     padding: 0;
 }
+@media(max-width:768px){
+    .mideIndex{
+        float: left;
+    }
+    .mideSecond{
+        float: left;
+        display: block;
+        padding-right: 0;
+    }
+    #nav{
+        margin: 7.5px 0;
+        margin-left: 15px;
+    }
+    #nav>li{
+        float: left;
+    }
+     #nav>li>a{
+        padding:10px;
+     }
+    .myBox{
+        margin-right: 0;
+    }
+    .navbar-brand{
+        padding:20px 15px;
+    }
+}
 // 去掉加载数据中间的白屏
 [v-cloak] { display: none }
