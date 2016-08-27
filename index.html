@@ -98,6 +98,26 @@ div#myBook table tr th {
             <button type="button" name="submit" class="btn btn-primary btn-block" v-on:click="addBook()">添加</button>
         </form>
     </div>
+     <!-- footer -->
+    <footer class="footer navbar navbar-default" style="margin-bottom: 0;" role="footer" @click="hide()">
+        <div class="container" style="text-align:center;padding-top: 10px;">
+            <p>今天是：
+                <time></time>
+                <script>
+                setInterval(function() {
+                    var date = new Date();
+                    var t = date.toLocaleDateString();
+                    var myTime = date.toLocaleTimeString().substring(0, 8);
+                    document.getElementsByTagName("time")[0].innerHTML = t + "   " + myTime;
+                }, 1000)
+                </script>
+            </p>
+            <p>你是今天的第<span>112</span>个小怪兽&nbsp;&nbsp;&nbsp;当前访问总量为:<span>
+            1120</span></p>
+            <p>欢迎来到<strong>《一片技术的沃土》</strong>的小黑屋</p>
+            <p>技术实现与版权所有：yuanshenchao</p>
+        </div>
+    </footer>
     <script src="http://cdn.bootcss.com/jquery/3.1.0/jquery.min.js"></script>
     <script src="http://apps.bdimg.com/libs/bootstrap/3.3.0/js/bootstrap.min.js"></script>
    <script src="http://cdn.bootcss.com/bootstrap-validator/0.5.3/js/bootstrapValidator.min.js"></script>

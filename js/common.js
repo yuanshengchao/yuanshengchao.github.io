@@ -5,4 +5,10 @@ var _hmt = _hmt || [];
   var s = document.getElementsByTagName("script")[0]; 
   s.parentNode.insertBefore(hm, s);
 })();
-console.log(_hmt);
+
+/*$(function(){
+	var menu=$("input[name='navMean']").val();
+	switch(menu){
+		case "search":
+	}
+});*/

@@ -22,6 +22,7 @@ h1 {
     letter-spacing: 1px;
     text-align: center;
     color: #a0a064;
+    margin-bottom: 20px;
 }
 
 .glyphicon-search:before {
@@ -79,6 +80,32 @@ ul.mySearch>li:hover,ul.mySearch>li:visited {
         border-radius: 0;
     }
 }
+@media(max-width:768px){
+    .mideIndex{
+        float: left;
+    }
+    .mideSecond{
+        float: left;
+        display: block;
+        padding-right: 0;
+    }
+    #nav{
+        margin: 7.5px 0;
+        margin-left: 15px;
+    }
+    #nav>li{
+        float: left;
+    }
+     #nav>li>a{
+        padding:10px;
+     }
+    .myBox{
+        margin-right: 0;
+    }
+    .navbar-brand{
+        padding:20px 15px;
+    }
+}
 
 #active {
     color: #fff;
@@ -93,14 +120,15 @@ ul.mySearch>li:hover,ul.mySearch>li:visited {
 <script src="http://apps.bdimg.com/libs/jquery/2.1.1/jquery.min.js"></script>
 <script src="http://apps.bdimg.com/libs/bootstrap/3.3.0/js/bootstrap.min.js"></script>
 
-<body>
+<body id="mySearch">
+    <input type="hidden" name="navMean" value="search">
     <nav class="navbar navbar-inverse nav-fixed-top" role="navigation">
         <div class="container">
             <!-- 主要的首页内容，比下面的大一点 -->
-            <div class="navbar-header">
+            <div class="navbar-header mideIndex">
                 <a href="../index.html" class="navbar-brand" id="active">首页</a>
             </div>
-            <div class="navbar-collapse collapse" id="navbar">
+            <div class="navbar-collapse collapse mideSecond" id="navbar">
                 <ul id="nav" class="nav navbar-nav">
                     <li v-for="meau in meaus">
                         <a href="{{meau.url}}">{{meau.name}}</a>
@@ -109,9 +137,9 @@ ul.mySearch>li:hover,ul.mySearch>li:visited {
             </div>
         </div>
     </nav>
-    <div class="container"   id="mySearch">
+    <div class="container myBox">
         <h1 v-bind:class={isShow:isShow}>一片技术的沃土搜索引擎</h1>
-        <div v-bind:class={isShow:isShow} style="padding:20px 100px 10px">
+        <div v-bind:class={isShow:isShow}>
             <form v-on:submit.prevent class="form-search" accept-charset="utf-8" role="form" style="position:relative;">
                 <div class="input-group input-group-lg">
                     <input type="text" v-model="searchName" v-on:keyup.enter="addNew()" class="form-control" placeholder="输入搜索你要搜索的内容" style="border-radius: 0;" v-on:focus="show()" id="borderIp" />
@@ -131,7 +159,7 @@ ul.mySearch>li:hover,ul.mySearch>li:visited {
         </div>
     </div>
     <!-- footer -->
-    <footer class="footer navbar navbar-default navbar-fixed-bottom" role="footer">
+    <footer class="footer navbar navbar-default navbar-fixed-bottom" role="footer" @click="hide()">
         <div class="container" style="text-align:center;padding-top: 10px;">
             <p>今天是：
                 <time></time>
@@ -146,7 +174,8 @@ ul.mySearch>li:hover,ul.mySearch>li:visited {
             </p>
             <p>你是今天的第<span>112</span>个小怪兽&nbsp;&nbsp;&nbsp;当前访问总量为:<span>
             1120</span></p>
-            <p>欢迎来到<strong>《一片技术的沃土》</strong>的小黑屋;&nbsp;&nbsp;&copy;&nbsp;技术实现与版权所有：yuanshenchao</p>
+            <p>欢迎来到<strong>《一片技术的沃土》</strong>的小黑屋</p>
+            <p>技术实现与版权所有：yuanshenchao</p>
         </div>
     </footer>
     <script src="../js/vue.js"></script>
