@@ -88,7 +88,7 @@ $(function() {
     });
 
     // 点显示红包规则
-    $("#swipe").click(function() {
+    $(".swipe").click(function() {
         $("body").scrollTop(0);
         $("body,html").css("overflow", "hidden");
         $('body').bind("touchmove", function(e) { e.preventDefault(); });
