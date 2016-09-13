@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0">
+<title>授权代言书</title>
+<style>
+	*{ margin:0;padding:0; }
+	html,body{
+		width: 100%;height:100%;
+	}
+	.wrap{
+		position: absolute;
+		top: 0;
+		width: 100%;
+		height: 100%;
+	}
+	.wrap>div{
+		position: relative;
+		width: 100%;
+		height:100%;
+		background-size: 100% 100%;
+		font-family: "华文中宋";
+	}
+	#page1,#page4{
+		background-image: url(images/bg.png) ;		
+	}
+	#page2,#page3{
+		background-image: url(images/bg2.png) ;		
+	}
+	.tit{
+		position: absolute;
+		top: 25%;
+		width: 100%;
+		height: 2.5rem;
+		text-align: center;
+		font-size: 2.5rem;
+		color: #b31e23;
+	}
+	.activ_info,.result{
+		position: absolute;
+		top: 36%;
+		padding: 0 5%;
+		font-size: 1rem;
+		line-height: 1.3rem;
+		color: #000;
+	}
+	.build{
+		position: absolute;
+		bottom: 3%;
+		left:50%;
+		margin-left: -7.5rem;
+		width: 15rem;
+		height: 3rem;
+		border-radius: 3px;
+		line-height: 3rem;
+		text-align: center;
+		font-size: 1.2rem;
+		color: #000;
+		background: #eb6163;
+		text-decoration: none;
+	}
+	.ipt_tit{
+		position: absolute;
+		top: 35%;
+		width: 100%;
+		text-align: center;
+		font-size: 1.3rem;
+		font-family: "幼圆"	;	
+	}
+	#page2 input,#page3 input{
+		position: absolute;
+		top: 42%;
+		left: 50%;
+		margin-left: -7rem;
+		width: 14rem;
+		height: 2rem;
+		text-align: center;
+		line-height: 2rem;
+		border: none;
+		background: #fff;
+		font-size: 1.2rem;
+		outline: none;
+	}
+	.result .to_result{
+		text-align: center;
+	}
+	.result .result_txt{
+		text-align: center;
+		font-size: 2.5rem;
+		line-height: 4rem;
+	}
+	.next{
+		position: absolute;
+		bottom:16%;
+		right:0;
+		width: 33.33%;
+		height: 16%;
+	}
+</style>
+</head>
+<body>
+   <div class="wrap">
+   		<div id="page1">
+   			<div class="tit">活动规则</div>
+   			<div class="activ_info">
+   				<p>1、活动日期：9.17-9.24</p>
+				<p>2、活动细则：</p>
+				<p>选出你最爱的美食，生成你的专属代言证书，截图发送至朋友圈或微博，于9.24日截图发送至JanSport公众号，我们将根据你的点赞人数和微博人气评选出冠亚季军，成为美食专属代言人。</p>
+				<p>3、奖品设置</p>
+				<p>冠亚季军分为微博赛区和微信赛区</p>
+				<p>冠军奖品：1000元现金+JanSport免单机会</p>
+				<p>亚军奖品：300元现金+JanSport免单机会</p>
+				<p>季军奖品：JanSport免单机会</p>
+   			</div>
+   			<a href="javascript:;" class="build" id="build">点击生成你的授权代言书</a>
+   		</div>
+   		<div id="page2">
+	   		<div class="ipt_tit">
+	   			请输入你想代言的城市（或地区）
+	   		</div>
+	   		<input type="text" descrip="city">
+	   		<a href="javascript:;" class="next"></a>
+   		</div>
+   		<div id="page3">
+   			<div class="ipt_tit">
+	   			请输入你想代言的美食
+	   		</div>
+	   		<input type="text" descrip="foods">
+	   		<a href="javascript:;" class="next"></a>
+   		</div>
+   		<div id="page4">
+   			<div class="tit">授权证书</div>
+   			<div class="result">
+	   			<p class="to_result">经过严格审核，恭喜你正式成为</p>
+	   			<p class="result_txt">上海市-小笼包</p>
+	   			<p>代言人，请将此授权证书截图发至朋友圈或微博，发动你的粉丝为你刷高人气，成为你最爱美食的代言人吧！</p>
+   			</div>
+   		</div>
+   </div>
+</body>
+<script src="js/jquery-1.8.2.js"></script>
+<script>
+var result = {
+	city:"",
+	foods:""
+}
+/*禁止滚动*/
+document.body.addEventListener('touchmove', function (event) {
+    event.preventDefault();
+}, false);
+var windowHeight = $(window).height();
+$('#build').on('click',function(){	
+	var top = $('.wrap').offset().top;
+	$('.wrap').animate({
+	top: top-windowHeight},
+	300);
+});
+$('.next').on('click',function(){	
+	var ipt = $(this).siblings('input');
+	var descrip = ipt.attr('descrip');
+	if(!ipt.val()){
+		if(descrip == "city"){
+			alert('请输入你想代言的城市（或地区）');
+		}else if(descrip == "foods"){
+			alert('请输入你想代言的食物');
+		}		
+	}else{
+		if(descrip == "city"){
+			result.city = ipt.val();
+		}else if(descrip == "foods"){
+			result.foods = ipt.val();
+		} 
+		var top = $('.wrap').offset().top;
+		$('.wrap').animate({
+		top: top-windowHeight},
+		300);
+	}
+	$('.result_txt').text(result.city+'-'+result.foods);
+});
+</script>
+</html>
