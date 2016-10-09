@@ -73,7 +73,7 @@ a:hover {
 /* 大转盘样式 */
 .banner {
     display: block;
-    width: 75%;
+    width: 90%;
     margin: 30px auto;
 }
 .banner .turnplate {
