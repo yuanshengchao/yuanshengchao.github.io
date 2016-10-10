@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>10月22号天猫JanSport旗舰店party直播,等你哟！！！</title>
-    <link href="style.css" rel="stylesheet" type="text/css">
+    <link href="style.css?v=2" rel="stylesheet" type="text/css">
     <script type="text/javascript" src="js/jquery-1.10.2.js"></script>
     <script type="text/javascript" src="js/awardRotate.js"></script>
     <script type="text/javascript">
@@ -16,17 +16,17 @@
         outsideRadius: 192, //大转盘外圆的半径
         textRadius: 155, //大转盘奖品位置距离圆心的距离
         insideRadius: 68, //大转盘内圆的半径
-        startAngle: 0, //开始角度
+        startAngle: 40, //开始角度
 
         bRotate: false //false:停止;ture:旋转
     };
 
     $(document).ready(function() {
         //动态添加大转盘的奖品与奖品区域背景颜色
-        turnplate.restaraunts = ["10元代金券", "20元代金券", "谢谢参与", "30元代金券", "10元代金券", "20元代金券", "谢谢参与 ", "10月22日party门票", "50元代金券", "60代金券"];
-        turnplate.colors = ["#FFF4D6", "#FFFFFF", "#FFF4D6", "#FFFFFF", "#FFF4D6", "#FFFFFF", "#FFF4D6", "#FFFFFF", "#FFF4D6", "#FFFFFF"];
+        turnplate.restaraunts = ["10元代金券", "20元代金券", "谢谢参与", "30元代金券"];
+        turnplate.colors = ["#f7deed", "#FFFFFF", "#f7deed", "#FFFFFF"];
 
-
+        // 旋转的时间
         var rotateTimeOut = function() {
             $('#wheelcanvas').rotate({
                 angle: 0,
@@ -40,11 +40,11 @@
 
         //旋转转盘 item:奖品位置; txt：提示语;
         var rotateFn = function(item, txt) {
-            var angles = item * (360 / turnplate.restaraunts.length) - (360 / (turnplate.restaraunts.length * 2));
-            if (angles < 270) {
-                angles = 270 - angles;
+            var angles = 45+item * (360 / turnplate.restaraunts.length) - (360 / (turnplate.restaraunts.length * 2));
+            if (angles < 180) {
+                angles = 180 - angles;
             } else {
-                angles = 360 - angles + 270;
+                angles = 360 - angles + 180;
             }
             $('#wheelcanvas').stopRotate();
             $('#wheelcanvas').rotate({
@@ -70,38 +70,38 @@
             var item = rnd(1, turnplate.restaraunts.length);
             //奖品数量等于10,指针落在对应奖品区域的中心角度[252, 216, 180, 144, 108, 72, 36, 360, 324, 288]
             rotateFn(item, turnplate.restaraunts[item - 1]);
-            /* switch (item) {
-            	case 1:
-            		rotateFn(252, turnplate.restaraunts[0]);
-            		break;
-            	case 2:
-            		rotateFn(216, turnplate.restaraunts[1]);
-            		break;
-            	case 3:
-            		rotateFn(180, turnplate.restaraunts[2]);
-            		break;
-            	case 4:
-            		rotateFn(144, turnplate.restaraunts[3]);
-            		break;
-            	case 5:
-            		rotateFn(108, turnplate.restaraunts[4]);
-            		break;
-            	case 6:
-            		rotateFn(72, turnplate.restaraunts[5]);
-            		break;
-            	case 7:
-            		rotateFn(36, turnplate.restaraunts[6]);
-            		break;
-            	case 8:
-            		rotateFn(360, turnplate.restaraunts[7]);
-            		break;
-            	case 9:
-            		rotateFn(324, turnplate.restaraunts[8]);
-            		break;
-            	case 10:
-            		rotateFn(288, turnplate.restaraunts[9]);
-            		break;
-            } */
+            // switch (item) {
+            // 	case 1:
+            // 		rotateFn(95, turnplate.restaraunts[0]);
+            // 		break;
+            // 	case 2:
+            // 		rotateFn(175, turnplate.restaraunts[1]);
+            // 		break;
+            // 	case 3:
+            // 		rotateFn(265, turnplate.restaraunts[2]);
+            // 		break;
+            // 	case 4:
+            // 		rotateFn(355, turnplate.restaraunts[3]);
+            // 		break;
+            	// case 5:
+            	// 	rotateFn(108, turnplate.restaraunts[4]);
+            	// 	break;
+            	// case 6:
+            	// 	rotateFn(72, turnplate.restaraunts[5]);
+            	// 	break;
+            	// case 7:
+            	// 	rotateFn(36, turnplate.restaraunts[6]);
+            	// 	break;
+            	// case 8:
+            	// 	rotateFn(360, turnplate.restaraunts[7]);
+            	// 	break;
+            	// case 9:
+            	// 	rotateFn(324, turnplate.restaraunts[8]);
+            	// 	break;
+            	// case 10:
+            	// 	rotateFn(288, turnplate.restaraunts[9]);
+            	// 	break;
+           // } 
             console.log(item);
         });
     });
@@ -127,7 +127,7 @@
             //在给定矩形内清空一个矩形
             ctx.clearRect(0, 0, 422, 422);
             //strokeStyle 属性设置或返回用于笔触的颜色、渐变或模式  
-            ctx.strokeStyle = "#FFBE04";
+            ctx.strokeStyle = "#ea5f5f";
             //font 属性设置或返回画布上文本内容的当前字体属性
             ctx.font = '16px Microsoft YaHei';
             for (var i = 0; i < turnplate.restaraunts.length; i++) {
