@@ -57,24 +57,21 @@ a:hover {
 }
 
 
-/*自定义的样式*/
-
-.head {
-    text-align: center;
-    margin-top: 20px;
-}
-.footer h2 {
-    margin: 0 20px 20px 20px;
-    line-height: 30px;
-    text-align: center;
-    font-weight: normal;
-}
-
 /* 大转盘样式 */
+
+.award {
+    background: url(images/awardbg.jpg) no-repeat;
+    background-size: 100%;
+}
+
 .banner {
     display: block;
-    width: 90%;
+    width: 79%;
     margin: 30px auto;
+    margin-top: 41%;
+}
+
+
 }
 .banner .turnplate {
     display: block;
@@ -86,8 +83,8 @@ a:hover {
 }
 .banner .turnplate img.pointer {
     position: absolute;
-    width: 31.5%;
-    height: 42.5%;
-    left: 34.6%;
-    top: 23%;
+    width: 27.5%;
+    height: 22.5%;
+    left: 36.6%;
+    top: 34%;
 }
