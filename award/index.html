@@ -7,8 +7,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>10月22号天猫JanSport旗舰店party直播,等你哟！！！</title>
     <link href="style.css?v=2" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="share.css?v=2.0">
     <script type="text/javascript" src="js/jquery-1.10.2.js"></script>
     <script type="text/javascript" src="js/awardRotate.js"></script>
+    <script src="js/share.js?v=2.0" charset="utf-8"></script>
     <script type="text/javascript">
     var turnplate = {
         restaraunts: [], //大转盘奖品名称
@@ -17,13 +19,14 @@
         textRadius: 155, //大转盘奖品位置距离圆心的距离
         insideRadius: 68, //大转盘内圆的半径
         startAngle: 40, //开始角度
-
+        gifts:[],
         bRotate: false //false:停止;ture:旋转
     };
 
     $(document).ready(function() {
         //动态添加大转盘的奖品与奖品区域背景颜色
-        turnplate.restaraunts = ["10元代金券", "20元代金券", "谢谢参与", "30元代金券"];
+        turnplate.restaraunts = ["100元無門檻券", "满500元减50券", "满300元减20券", "5元無門檻券"];
+        turnplate.gifts=['http://shop.m.taobao.com/shop/coupon.htm?sellerId=807956257&activityId=c29da2bd6bd0482498403beeae1dd9cc','http://shop.m.taobao.com/shop/coupon.htm?sellerId=807956257&activityId=969bf42be1fd4fc692a96ab5c60d4dcc','http://shop.m.taobao.com/shop/coupon.htm?sellerId=807956257&activityId=411ea9105b6641fdb989ff88a3ef9615','http://shop.m.taobao.com/shop/coupon.htm?sellerId=807956257&activityId=97750549b9464d2cbdbcab5616ff9968'];
         turnplate.colors = ["#f7deed", "#FFFFFF", "#f7deed", "#FFFFFF"];
 
         // 旋转的时间
@@ -39,7 +42,7 @@
         };
 
         //旋转转盘 item:奖品位置; txt：提示语;
-        var rotateFn = function(item, txt) {
+        var rotateFn = function(item, txt,gift) {
             var angles = 45+item * (360 / turnplate.restaraunts.length) - (360 / (turnplate.restaraunts.length * 2));
             if (angles < 180) {
                 angles = 180 - angles;
@@ -54,6 +57,7 @@
                 callback: function() {
                     // 设置提示框
                     $('#txt').html(txt);
+                    $('#gift').attr('href',gift);
                     turnplate.bRotate = !turnplate.bRotate;
                     // 跳转到天猫页面
                      $('#award').hide();
@@ -67,42 +71,18 @@
             if (turnplate.bRotate) return;
             turnplate.bRotate = !turnplate.bRotate;
             //获取随机数(奖品个数范围内)
-            var item = rnd(1, turnplate.restaraunts.length);
-            //奖品数量等于10,指针落在对应奖品区域的中心角度[252, 216, 180, 144, 108, 72, 36, 360, 324, 288]
-            rotateFn(item, turnplate.restaraunts[item - 1]);
-            // switch (item) {
-            // 	case 1:
-            // 		rotateFn(95, turnplate.restaraunts[0]);
-            // 		break;
-            // 	case 2:
-            // 		rotateFn(175, turnplate.restaraunts[1]);
-            // 		break;
-            // 	case 3:
-            // 		rotateFn(265, turnplate.restaraunts[2]);
-            // 		break;
-            // 	case 4:
-            // 		rotateFn(355, turnplate.restaraunts[3]);
-            // 		break;
-            	// case 5:
-            	// 	rotateFn(108, turnplate.restaraunts[4]);
-            	// 	break;
-            	// case 6:
-            	// 	rotateFn(72, turnplate.restaraunts[5]);
-            	// 	break;
-            	// case 7:
-            	// 	rotateFn(36, turnplate.restaraunts[6]);
-            	// 	break;
-            	// case 8:
-            	// 	rotateFn(360, turnplate.restaraunts[7]);
-            	// 	break;
-            	// case 9:
-            	// 	rotateFn(324, turnplate.restaraunts[8]);
-            	// 	break;
-            	// case 10:
-            	// 	rotateFn(288, turnplate.restaraunts[9]);
-            	// 	break;
-           // } 
-            console.log(item);
+            var num=Math.ceil(Math.random()*10);
+             var item ;
+            if(num==0){
+               item=1;
+            }else if(num>0 && num<=3){
+                item=2;
+            }else if(num>3 && num<=7){
+                item=3;
+            }else{
+                item=4;
+            }
+            rotateFn(item, turnplate.restaraunts[item - 1],turnplate.gifts[item-1]);
         });
     });
 
@@ -111,9 +91,6 @@
         return random;
 
     }
-
-
-    //页面所有元素加载完毕后执行drawRouletteWheel()方法对转盘进行渲染
     window.onload = function() {
         drawRouletteWheel();
     };
@@ -153,42 +130,10 @@
                 ctx.rotate(angle + arc / 2 + Math.PI / 2);
 
                 /** 下面代码根据奖品类型、奖品名称长度渲染不同效果，如字体、颜色、图片效果。(具体根据实际情况改变) **/
-                if (text.indexOf("M") > 0) { //流量包
-                    var texts = text.split("M");
-                    for (var j = 0; j < texts.length; j++) {
-                        ctx.font = j == 0 ? 'bold 20px Microsoft YaHei' : '16px Microsoft YaHei';
-                        if (j == 0) {
-                            ctx.fillText(texts[j] + "M", -ctx.measureText(texts[j] + "M").width / 2, j * line_height);
-                        } else {
-                            ctx.fillText(texts[j], -ctx.measureText(texts[j]).width / 2, j * line_height);
-                        }
-                    }
-                } else if (text.indexOf("M") == -1 && text.length > 6) { //奖品名称长度超过一定范围 
-                    text = text.substring(0, 6) + "||" + text.substring(6);
-                    var texts = text.split("||");
-                    for (var j = 0; j < texts.length; j++) {
-                        ctx.fillText(texts[j], -ctx.measureText(texts[j]).width / 2, j * line_height);
-                    }
-                } else {
                     //在画布上绘制填色的文本。文本的默认颜色是黑色
                     //measureText()方法返回包含一个对象，该对象包含以像素计的指定字体宽度
-                    ctx.fillText(text, -ctx.measureText(text).width / 2, 0);
-                }
-
-                //添加对应图标
-                if (text.indexOf("闪币") > 0) {
-                    var img = document.getElementById("shan-img");
-                    img.onload = function() {
-                        ctx.drawImage(img, -15, 10);
-                    };
-                    ctx.drawImage(img, -15, 10);
-                } else if (text.indexOf("谢谢参与") >= 0) {
-                    var img = document.getElementById("sorry-img");
-                    img.onload = function() {
-                        ctx.drawImage(img, -15, 10);
-                    };
-                    ctx.drawImage(img, -15, 10);
-                }
+                // 控制文字的位置
+                ctx.fillText(text, -ctx.measureText(text).width / 2, 20);
                 //把当前画布返回（调整）到上一个save()状态之前 
                 ctx.restore();
                 //----绘制奖品结束----
@@ -199,6 +144,20 @@
 </head>
 
 <body>
+<!-- 微信分享 -->
+   <!--  <img src="images/jansportLogo.png" alt="" style="position:absolute;width:300px;height:300px;top:-305px;"> -->
+    <div class="shadowbox">
+        <div>
+            <div>
+                <span>点击<img src="images/weixinshare.png" alt=""></span>
+            </div>
+            <div>
+                <p>在浏览器中打开</p>
+                <p>到JanSport天猫旗舰店领取奖品</p>
+            </div>
+        </div>
+        <img src="images/weixinGo.png" alt="点击分享" title="点击分享">
+    </div>
     <div class="award" id="award">
         <img src="images/1.png" id="shan-img" style="display:none;" />
         <img src="images/2.png" id="sorry-img" style="display:none;" />
@@ -213,8 +172,9 @@
     	<div class="txt">
     		<h2>恭喜您！</h2>
     		<p>得到<span id="txt"></span>，快跟小伙伴分享吧！</p>
+            <a href="#" id="gift" class="wechat">点击兑换礼券</a>
     	</div>
-    	<div class="jansport"><a href="#">回到JanSport天猫旗舰店</a></div>
+    	<div class="jansport"><a href="https://jansport.m.tmall.com" class="wechat">回到JanSport天猫旗舰店</a></div>
     </div>
 </body>
 
