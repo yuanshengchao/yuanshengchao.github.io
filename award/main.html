@@ -144,9 +144,16 @@
 </head>
 
 <body>
+<div class="play">
+    <img src="images/start.png" alt="播放" class="music" style="display: block" />
+    <img src="images/end.png" alt="暂定" class="music" />
+</div>
+<audio id="music1" controls="controls" autoplay="autoplay" loop="loop" hidden="hidden">
+  <source src="images/ppap.mp3" type="audio/mpeg" />
+</audio>
 <!-- 微信分享 -->
    <!--  <img src="images/jansportLogo.png" alt="" style="position:absolute;width:300px;height:300px;top:-305px;"> -->
-    <div class="shadowbox">
+   <!--  <div class="shadowbox">
         <div>
             <div>
                 <span>点击<img src="images/weixinshare.png" alt=""></span>
@@ -157,10 +164,8 @@
             </div>
         </div>
         <img src="images/weixinGo.png" alt="点击分享" title="点击分享">
-    </div>
+    </div> -->
     <div class="award" id="award">
-        <img src="images/1.png" id="shan-img" style="display:none;" />
-        <img src="images/2.png" id="sorry-img" style="display:none;" />
         <div class="banner">
             <div class="turnplate" style="position: relative;">
                 <canvas class="item" id="wheelcanvas" width="422px" height="422px"></canvas>

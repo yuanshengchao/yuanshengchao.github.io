@@ -65,6 +65,7 @@ html,body{
 .award {
     width: 100%;
     height: 100%;
+    overflow: auto;
     background: url(images/abg.jpg) no-repeat;
     background-size: 100%;
 }
@@ -72,13 +73,17 @@ html,body{
     display: none;
     width: 100%;
     height: 100%;
+    overflow: auto;
     background: url(images/result.jpg) no-repeat;
     background-size: 100%;
 }
 .txt{
-    width:65%;
-    margin:0 auto;
-    padding-top: 50%;
+    width: 65%;
+    margin: 0 auto;
+    margin-top: 50%;
+    padding:20px;
+    border-radius: 15px;
+    background-color: #fff;
 
 }
 .txt>h2{
@@ -88,7 +93,8 @@ html,body{
 .txt>p{
     line-height: 35px;
     font-size:18px;
-    margin-bottom: 18%;
+    padding-bottom: 30px;
+    border-bottom: 1px solid;
 
 }
 .jansport>a,.txt>a{
@@ -100,16 +106,13 @@ html,body{
     text-align: right;
     text-align: center;
     font-weight: bold;
-    margin-top: 10%;
+    margin-top: 20px;
 }
 .banner {
     display: block;
     width: 76%;
     margin: 0 auto;
     padding-top: 41%;
-}
-
-
 }
 .banner .turnplate
  {
@@ -126,4 +129,15 @@ html,body{
     height: 48%;
     left: 32%;
     top: 20%;
+}
+.play{
+    position: absolute;
+}
+.play img{
+    display: none;
+    width: 50px;
+    position: fixed;
+    right: 10px;
+    top: 3%;
+    cursor: pointer;
 }
