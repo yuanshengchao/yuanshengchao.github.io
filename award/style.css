@@ -66,14 +66,14 @@ html,body{
     width: 100%;
     height: 100%;
     background: url(images/abg.jpg) no-repeat;
-    background-size: 100% 100%;
+    background-size: 100%;
 }
 .result{
     display: none;
     width: 100%;
     height: 100%;
     background: url(images/result.jpg) no-repeat;
-    background-size: 100% 100%;
+    background-size: 100%;
 }
 .txt{
     width:65%;
@@ -83,11 +83,12 @@ html,body{
 }
 .txt>h2{
     font-size:18px;
-    margin-bottom: 20%;
+    margin-bottom: 15%;
 }
 .txt>p{
     line-height: 35px;
     font-size:18px;
+    margin-bottom: 18%;
 
 }
 .jansport>a,.txt>a{
@@ -99,13 +100,13 @@ html,body{
     text-align: right;
     text-align: center;
     font-weight: bold;
-    margin-top: 14%;
+    margin-top: 10%;
 }
 .banner {
     display: block;
-    width: 78%;
+    width: 76%;
     margin: 0 auto;
-    padding-top: 43%;
+    padding-top: 41%;
 }
 
 
