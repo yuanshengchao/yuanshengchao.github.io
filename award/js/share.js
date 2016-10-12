@@ -1,15 +1,14 @@
 $(document).ready(function() {
-    $(".music").click(function() {
+    var audio = document.getElementById('music1');
+    $(".start").click(function() {
         $(this).hide();
-        $(this).siblings().show();
-        var audio = document.getElementById('music1');
-        if (audio !== null) {
-            if (audio.paused) {
-                audio.play(); 
-            } else {
-                audio.pause(); 
-            }
-        }
+        $(".end").show();
+        audio.pause();
+    });
+    $(".end").click(function() {
+        $(this).hide();
+        $(".start").show();
+        audio.play();
     });
     //判断微信
     // function is_weixn() {

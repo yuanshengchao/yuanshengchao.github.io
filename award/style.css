@@ -135,9 +135,9 @@ html,body{
 }
 .play img{
     display: none;
-    width: 50px;
+    width: 30px;
     position: fixed;
     right: 10px;
-    top: 3%;
+    top: 10px;
     cursor: pointer;
 }
