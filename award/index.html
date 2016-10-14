@@ -1,21 +1,334 @@
-<!DOCTYPE html>
-<html lang="en">
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
 
 <head>
-    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>【JanSport 女神养成计划】</title>
     <link rel="stylesheet" href="//cdn.bootcss.com/weui/0.4.3/style/weui.min.css">
     <link rel="stylesheet" href="//cdn.bootcss.com/jquery-weui/0.8.0/css/jquery-weui.min.css">
+    <link href="style.css?v=11" rel="stylesheet" type="text/css">
+    <script type="text/javascript" src="js/jquery-1.10.2.js"></script>
+    <script src="https://cdn.bootcss.com/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+    <script src="//cdn.bootcss.com/jquery-weui/0.8.0/js/jquery-weui.min.js"></script>
+    <script type="text/javascript" src="js/awardRotate.js?v=11.0"></script>
+    <script src="js/share.js?v=11.0" charset="utf-8"></script>
+    <script type="text/javascript">
+    function IsPC() {
+        var userAgentInfo = navigator.userAgent;
+        var Agents = ["Android", "iPhone",
+            "SymbianOS", "Windows Phone",
+            "iPad", "iPod"
+        ];
+        var flag = true;
+        for (var v = 0; v < Agents.length; v++) {
+            if (userAgentInfo.indexOf(Agents[v]) > 0) {
+                flag = false;
+                break;
+            }
+        }
+        return flag;
+    }
+    var turnplate = {
+        restaraunts: [], //大转盘奖品名称
+        colors: [], //大转盘奖品区块对应背景颜色
+        outsideRadius: 192, //大转盘外圆的半径
+        textRadius: 155, //大转盘奖品位置距离圆心的距离
+        insideRadius: 68, //大转盘内圆的半径
+        startAngle: 40, //开始角度
+        gifts: [],
+        bRotate: false //false:停止;ture:旋转
+    };
+
+    $(document).ready(function() {
+        if (IsPC()) {
+            $(".award,.result,.box").css({
+                "width": "640px",
+                "margin": "0 auto",
+                "height": "1086px"
+            });
+        }
+        var result = $.cookie("result");
+        var gift = $.cookie("gift");
+        console.log(result + ',' + gift);
+        if (result && gift) {
+            $('#txt').html(result);
+            $('#gift').attr('href', gift);
+            $('#award').hide();
+            $('#result').fadeIn();
+        } else {
+            // 跳转到天猫页面
+            if($.cookie("times")){
+                $('#award').show();
+                $('#result').hide();
+            }
+            else{
+                var u = navigator.userAgent;
+                var isAndroid = u.indexOf('Android') > -1 || u.indexOf('Adr') > -1; //android终端
+                var isiOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios终端
+                if(isAndroid){
+                    window.location.href="http://84060538.u.h5mc.com/campaigns/57f48a6e347a1976aa1b9a36/20161014080530/58001f9a7f09e10b5c323ca9/index.html";
+                }else if(isiOS){
+                    window.location.href="http://84060538.u.h5mc.com/campaigns/57f48a6e347a1976aa1b9a36/20161014123121/57ff5f9c347a194be058378e/index.html";
+                }else{
+                    window.location.href="http://84060538.u.h5mc.com/campaigns/57f48a6e347a1976aa1b9a36/20161014123121/57ff5f9c347a194be058378e/index.html";
+                }
+            }
+        }
+        //动态添加大转盘的奖品与奖品区域背景颜色
+        turnplate.restaraunts = ["100元無門檻券", "满500元减50券", "满300元减20券", "5元無門檻券"];
+        turnplate.gifts = ['http://shop.m.taobao.com/shop/coupon.htm?sellerId=807956257&activityId=c29da2bd6bd0482498403beeae1dd9cc', 'http://shop.m.taobao.com/shop/coupon.htm?sellerId=807956257&activityId=969bf42be1fd4fc692a96ab5c60d4dcc', 'http://shop.m.taobao.com/shop/coupon.htm?sellerId=807956257&activityId=411ea9105b6641fdb989ff88a3ef9615', 'http://shop.m.taobao.com/shop/coupon.htm?sellerId=807956257&activityId=97750549b9464d2cbdbcab5616ff9968'];
+        turnplate.colors = ["#f7deed", "#FFFFFF", "#f7deed", "#FFFFFF"];
+
+        // 旋转的时间
+        var rotateTimeOut = function() {
+            $('#wheelcanvas').rotate({
+                angle: 0,
+                animateTo: 2160,
+                duration: 8000,
+                callback: function() {
+                    alert('网络超时，请检查您的网络设置！');
+                }
+            });
+        };
+
+        //旋转转盘 item:奖品位置; txt：提示语;
+        var rotateFn = function(item, txt, gift) {
+            var angles = 45 + item * (360 / turnplate.restaraunts.length) - (360 / (turnplate.restaraunts.length * 2));
+            if (angles < 180) {
+                angles = 180 - angles;
+            } else {
+                angles = 360 - angles + 180;
+            }
+            $('#wheelcanvas').stopRotate();
+            $('#wheelcanvas').rotate({
+                angle: 0,
+                animateTo: angles + 1800,
+                duration: 8000,
+                callback: function() {
+                    // 设置提示框
+                    $('#txt').html(txt);
+                    $('#gift').attr('href', gift);
+                    $.cookie("result", txt);
+                    $.cookie("gift", gift);
+                    turnplate.bRotate = !turnplate.bRotate;
+                    // 跳转到天猫页面
+                    $('#award').hide();
+                    $('#result').fadeIn();
+                    // window.location.href="baidu.com";
+                }
+            });
+        };
+
+        $('.pointer').click(function() {
+            if (turnplate.bRotate) return;
+            turnplate.bRotate = !turnplate.bRotate;
+            //获取随机数(奖品个数范围内)
+            var num = Math.ceil(Math.random() * 10);
+            var item;
+            if (num == 0) {
+                item = 1;
+            } else if (num > 0 && num <= 3) {
+                item = 2;
+            } else if (num > 3 && num <= 7) {
+                item = 3;
+            } else {
+                item = 4;
+            }
+            rotateFn(item, turnplate.restaraunts[item - 1], turnplate.gifts[item - 1]);
+        });
+    });
+
+    function rnd(n, m) {
+        var random = Math.floor(Math.random() * (m - n + 1) + n);
+        return random;
+
+    }
+    window.onload = function() {
+        drawRouletteWheel();
+    };
+
+    function drawRouletteWheel() {
+        var canvas = document.getElementById("wheelcanvas");
+        if (canvas.getContext) {
+            //根据奖品个数计算圆周角度
+            var arc = Math.PI / (turnplate.restaraunts.length / 2);
+            var ctx = canvas.getContext("2d");
+            //在给定矩形内清空一个矩形
+            ctx.clearRect(0, 0, 422, 422);
+            //strokeStyle 属性设置或返回用于笔触的颜色、渐变或模式  
+            ctx.strokeStyle = "#ea5f5f";
+            //font 属性设置或返回画布上文本内容的当前字体属性
+            ctx.font = '24px Microsoft YaHei';
+            for (var i = 0; i < turnplate.restaraunts.length; i++) {
+                var angle = turnplate.startAngle + i * arc;
+                ctx.fillStyle = turnplate.colors[i];
+                ctx.beginPath();
+                //arc(x,y,r,起始角,结束角,绘制方向) 方法创建弧/曲线（用于创建圆或部分圆）    
+                ctx.arc(211, 211, turnplate.outsideRadius, angle, angle + arc, false);
+                ctx.arc(211, 211, turnplate.insideRadius, angle + arc, angle, true);
+                ctx.stroke();
+                ctx.fill();
+                //锁画布(为了保存之前的画布状态)
+                ctx.save();
+
+                //----绘制奖品开始----
+                ctx.fillStyle = "#E5302F";
+                var text = turnplate.restaraunts[i];
+                var line_height = 17;
+                //translate方法重新映射画布上的 (0,0) 位置
+                ctx.translate(211 + Math.cos(angle + arc / 2) * turnplate.textRadius, 211 + Math.sin(angle + arc / 2) * turnplate.textRadius);
+
+                //rotate方法旋转当前的绘图
+                ctx.rotate(angle + arc / 2 + Math.PI / 2);
+
+                /** 下面代码根据奖品类型、奖品名称长度渲染不同效果，如字体、颜色、图片效果。(具体根据实际情况改变) **/
+                //在画布上绘制填色的文本。文本的默认颜色是黑色
+                //measureText()方法返回包含一个对象，该对象包含以像素计的指定字体宽度
+                // 控制文字的位置
+                ctx.fillText(text, -ctx.measureText(text).width / 2, 20);
+                //把当前画布返回（调整）到上一个save()状态之前 
+                ctx.restore();
+                //----绘制奖品结束----
+            }
+        }
+    }
+    </script>
 </head>
-<style>
-	.common{
-		height: 100%;
-		height: 100%;
-	}
-</style>
+
 <body>
-    <script src="//cdn.bootcss.com/jquery/1.11.0/jquery.min.js"></script>
-    <script src="main.js"></script>
+    <!-- 微信分享 -->
+    <img src="images/share.jpg" alt="" style="position:absolute;width:300px;height:300px;top:-305px;">
+    <div class="box">
+        <div class="play">
+            <img src="images/start.png" alt="播放" class="start" style="display: block" />
+            <img src="images/end.png" alt="暂定" class="end" />
+        </div>
+        <audio id="music1" controls="controls" autoplay="autoplay" loop="loop" hidden="hidden">
+            <source src="images/ppap.mp3" type="audio/mpeg" />
+        </audio>
+        <!--  <div class="shadowbox">
+        <div>
+            <div>
+                <span>点击<img src="images/weixinshare.png" alt=""></span>
+            </div>
+            <div>
+                <p>在浏览器中打开</p>
+                <p>到JanSport天猫旗舰店领取奖品</p>
+            </div>
+        </div>
+        <img src="images/weixinGo.png" alt="点击分享" title="点击分享">
+    </div> -->
+        <div class="award" id="award">
+            <div class="banner">
+                <div class="turnplate" style="position: relative;">
+                    <canvas class="item" id="wheelcanvas" width="422px" height="422px"></canvas>
+                    <img class="pointer" src="images/turnplate-pointer.png" />
+                </div>
+            </div>
+        </div>
+        <div class="result" id="result">
+            <div class="txt">
+                <h2>恭喜您！</h2>
+                <p>得到<span id="txt"></span>，快跟小伙伴分享吧！</p>
+                <a href="#" id="gift" class="wechat">点击兑换礼券</a>
+            </div>
+            <div class="jansport"><a href="https://jansport.m.tmall.com" class="wechat">回到JanSport天猫旗舰店</a></div>
+            <div class='demos-content-padded'>
+                <a href="javascript:;" class="btnShare open-popup" data-target="#half"></a>
+            </div>
+            <div id="half" class='weui-popup-container popup-bottom'>
+                <div class="weui-popup-overlay">
+                    <img class="go" src="images/weixinGo.png" alt="" />
+                    <img class="sao" src="images/erweima.png" alt="" />
+                </div>
+                <div class="weui-popup-modal">
+                    <div class="toolbar">
+                        <div class="toolbar-inner">
+                            <a href="javascript:;" class="picker-button close-popup">关闭</a>
+                            <h1 class="title">邀请好友参加直播女神养成计划</h1>
+                        </div>
+                    </div>
+                    <div class="modal-content bdsharebuttonbox" data-tag="share_1">
+                        <div class="weui_grids">
+                            <a href="javascript:;" class="weui_grid js_grid friend" data-id="dialog">
+                                <div class="weui_grid_icon">
+                                    <img src="images/Wechat.png" alt="">
+                                </div>
+                                <p class="weui_grid_label">
+                                    发给朋友
+                                </p>
+                            </a>
+                            <a href="javascript:;" class="weui_grid js_grid friend" data-id="progress">
+                                <div class="weui_grid_icon">
+                                    <img src="images/friend.png" alt="">
+                                </div>
+                                <p class="weui_grid_label">
+                                    分享朋友圈
+                                </p>
+                            </a>
+                            <a href="javascript:;" class="bds_qzone weui_grid js_grid" data-id="msg" data-cmd="qzone">
+                                <div class="weui_grid_icon">
+                                    <img src="images/qone.png" alt="">
+                                </div>
+                                <p class="weui_grid_label">
+                                    QQ空间
+                                </p>
+                            </a>
+                            <a href="javascript:;" data-cmd="sqq" class="bds_sqq weui_grid js_grid" data-id="dialog">
+                                <div class="weui_grid_icon">
+                                    <img src="images/qq.png" alt="">
+                                </div>
+                                <p class="weui_grid_label">
+                                    QQ好友
+                                </p>
+                            </a>
+                            <a href="javascript:;" data-cmd="tsina" class="bds_tsina weui_grid js_grid" data-id="progress">
+                                <div class="weui_grid_icon">
+                                    <img src="images/weibo.png" alt="">
+                                </div>
+                                <p class="weui_grid_label">
+                                    新浪微博
+                                </p>
+                            </a>
+                            <a href="javascript:;" class="bds_tieba weui_grid js_grid" data-id="msg" data-cmd="tieba">
+                                <div class="weui_grid_icon">
+                                    <img src="images/tieba.png" alt="">
+                                </div>
+                                <p class="weui_grid_label">
+                                    百度贴吧
+                                </p>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+    window._bd_share_config = {
+        "common": {
+            "bdSnsKey": {},
+            "bdText": "",
+            "bdMini": "1",
+            "bdMiniList": false,
+            "bdPic": "",
+            "bdStyle": "0",
+            "bdSize": "16"
+        },
+        "share": {}
+    };
+    with(document) 0[(getElementsByTagName('head')[0] || body).appendChild(createElement('script')).src = 'http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion=' + ~(-new Date() / 36e5)];
+    </script>
+    <script>
+    $(document).on("open", ".weui-popup-modal", function() {
+        console.log("open popup");
+    }).on("close", ".weui-popup-modal", function() {
+        $(".weui-popup-overlay>img.sao").hide();
+        $(".weui-popup-overlay>img.go").hide();
+    });
+    </script>
 </body>
 
 </html>
