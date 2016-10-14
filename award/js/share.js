@@ -10,32 +10,47 @@ $(document).ready(function() {
         $(".start").show();
         audio.play();
     });
-    //判断微信
-    // function is_weixn() {
-    //         var ua = navigator.userAgent.toLowerCase();
-    //         if (ua.match(/MicroMessenger/i) == "micromessenger") {
-    //             return true;
-    //         } else {
-    //             return false;
-    //         }
-    //     }
-    //     // 微信点击蒙版
-    // $("a.wechat").click(function() {
-    //     if(is_weixn()){
-    //         var screenheight = $(window).height();
-    //         var bodyheight = $("body").height();
-    //         var lastheight = screenheight > bodyheight ? screenheight : bodyheight;
-    //         $("div.shadowbox").height(lastheight);
-    //         $("body").scrollTop(0);
-    //         $("body,html").css("overflow","hidden");
-    //         $('body').bind("touchmove",function(e){ e.preventDefault(); });
-    //         $("div.shadowbox").show();
-    //         return false;
-    //     }
-    // });
-    // $("div.shadowbox").click(function() {
-    //     $(this).hide();
-    //     $("body,html").css("overflow","auto");
-    //      $("body").unbind("touchmove");
-    // });
+    $('title').text("我选择了可爱的女王范，快来创造你的女神吧！");
+    var bdBox = ["我选择了可爱的女王范，快来创造你的女神吧！", "我选择了可爱的绿茶妹，快来创造你的女神吧！", "我选择了可爱的女汉子，快来创造你的女神吧！", "我选择了可爱的小萝莉，快来创造你的女神吧！", "我选择了时尚的女王范，快来创造你的女神吧！", "我选择了时尚的绿茶妹，快来创造你的女神吧！", "我选择了时尚的女汉子，快来创造你的女神吧！", "我选择了时尚的小萝莉，快来创造你的女神吧！", "我选择了性感的女王范，快来创造你的女神吧！", "我选择了性感的绿茶妹，快来创造你的女神吧！", "我选择了性感的女汉子，快来创造你的女神吧！", "我选择了性感的小萝莉，快来创造你的女神吧！", "我选择了文艺的女王范，快来创造你的女神吧！", "我选择了文艺的绿茶妹，快来创造你的女神吧！", "我选择了文艺的女汉子，快来创造你的女神吧！", "我选择了文艺的小萝莉，快来创造你的女神吧！"];
+
+    $(".friend").click(function(){
+        if (typeof WeixinJSBridge == "undefined") {
+            $(".weui-popup-overlay>img.sao").css("display","block");
+        }else{
+             $(".weui-popup-overlay>img.go").show();
+        }
+    });
+    window._bd_share_config = {
+        common: {
+            // 标题
+            bdText: bdBox[0],
+            // 
+            bdDesc: '女神当众换衣，不忍直视',
+            // 分享页面的地址
+            bdUrl: 'http://yuanshengchao.cn/award/index.html',
+            // 分享的图片
+            bdPic: 'http://yuanshengchao.cn/award/images/share.jpg',
+            //配置分享来源
+            /*bdSnsKey: {
+                'tsina': '11',
+                'qzone': '22',
+                'weixin': '3154391214',
+                'tieba': '3154391214'
+            }*/
+        },
+        share: [{
+            "bdSize": 16
+        }],
+        image: [{
+            viewType: 'list',
+            viewPos: 'top',
+            viewColor: 'black',
+            viewSize: '16',
+            viewList: ['qzone', 'tsina', 'huaban', 'tqq', 'renren']
+        }],
+        selectShare: [{
+            "bdselectMiniList": ['qzone', 'tqq', 'kaixin001', 'bdxc', 'tqf']
+        }]
+    }
+    with(document) 0[(getElementsByTagName('head')[0] || body).appendChild(createElement('script')).src = 'http://bdimg.share.baidu.com/static/api/js/share.js?cdnversion=' + ~(-new Date() / 36e5)];
 });

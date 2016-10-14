@@ -57,12 +57,13 @@ a:hover {
 }
 
 /* 大转盘样式 */
-html,body{
+html,body,.box{
     width: 100%;
     height: 100%;
     position: relative;
 }
 .award {
+    display: none;
     width: 100%;
     height: 100%;
     overflow: auto;
@@ -80,7 +81,7 @@ html,body{
 .txt{
     width: 65%;
     margin: 0 auto;
-    margin-top: 50%;
+    margin-top: 45%;
     padding:20px;
     border-radius: 15px;
     background-color: #fff;
@@ -132,12 +133,41 @@ html,body{
 }
 .play{
     position: absolute;
+    height: 30px;
+    width: 30px;
+    right: 10px;
+    top: 10px;
 }
 .play img{
     display: none;
     width: 30px;
-    position: fixed;
+    position: absolute;
     right: 10px;
     top: 10px;
     cursor: pointer;
+}
+a.btnShare{
+    display: block;
+    width: 135px;
+    height: 72px;
+    margin:0 auto;
+    background: url("images/btnStart.png") no-repeat;
+    background-size: 100%;
+}
+.result .bdshare-button-style0-16 a, .result .bdshare-button-style0-16 .bds_more{
+    line-height: inherit;
+    height: auto;
+    background-image: none;
+    padding-left:0;
+    margin:0;
+}
+.weui-popup-overlay>img.go{
+    display: none;
+    position: absolute;
+    right: 40px;
+    top: 60px;
+}
+.weui-popup-overlay>img.sao{
+    display: none;
+    margin: 10% auto;
 }
